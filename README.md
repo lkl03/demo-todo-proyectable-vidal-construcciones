@@ -1,2 +1,7 @@
-# demo-todo-proyectable-vidal-construcciones
-Demo web para TODO PROYECTABLE VIDAL CONSTRUCCIONES — diseñada por eterlab.
+# TODO PROYECTABLE VIDAL CONSTRUCCIONES
+
+Sitio web demo diseñado por [eterlab.](https://eterlab.co)
+
+## Editar
+
+Modificá `index.html` para personalizar el sitio.

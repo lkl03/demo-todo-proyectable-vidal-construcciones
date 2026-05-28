@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TODO PROYECTABLE VIDAL CONSTRUCCIONES — Construyendo con precisión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=Montserrat:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:none;cursor:pointer;background:transparent;color:inherit}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes widen{from{width:0}to{width:100%}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}
+.reveal{opacity:0;animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.reveal.d1{animation-delay:.1s}
+.reveal.d2{animation-delay:.25s}
+.reveal.d3{animation-delay:.4s}
+.reveal.d4{animation-delay:.55s}
+.reveal.d5{animation-delay:.7s}
+.scroll-reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.scroll-reveal.visible{opacity:1;transform:translateY(0)}
+
+:root{--bg:#f8fafa;--surface:#ffffff;--text:#0f1a2a;--muted:#5a7080;--accent:#0d9488;--accent-soft:rgba(13,148,136,0.1);--border:#dce6ea;--font-display:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-size:15px;line-height:1.65}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.02em;line-height:1.05}
+body{background-image:radial-gradient(circle at 20% 10%,rgba(0,0,0,0.025) 0,transparent 50%),linear-gradient(to right,var(--border) 1px,transparent 1px),linear-gradient(to bottom,var(--border) 1px,transparent 1px);background-size:auto,48px 48px,48px 48px;background-position:0 0,0 0,0 0}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 30%,#f8fafa 90%)}
+nav{position:sticky;top:0;z-index:50;padding:16px 32px;backdrop-filter:blur(20px);background:rgba(255,255,255,0.85);border-bottom:1px solid var(--border)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+nav .logo{font-family:var(--font-display);font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
+nav .logo::before{content:'';width:10px;height:10px;background:var(--accent);border-radius:2px}
+nav .cta{font-family:var(--font-mono);font-size:13px;font-weight:500;padding:10px 20px;background:var(--accent);color:#fff;border-radius:4px;transition:all .2s}
+nav .cta:hover{filter:brightness(1.15)}
+@media(max-width:768px){nav{padding:14px 20px}nav .logo{font-size:17px}}
+.hero{padding:80px 32px 100px;position:relative;z-index:2}
+.hero-inner{max-width:1400px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);padding:8px 14px;background:rgba(255,255,255,0.7);border:1px solid var(--accent);border-radius:4px;margin-bottom:40px;backdrop-filter:blur(10px)}
+.hero-tag::before{content:'▲';font-size:10px}
+.hero-grid{display:grid;grid-template-columns:3fr 2fr;gap:80px;align-items:end}
+.hero h1{font-size:clamp(48px,6.5vw,88px);font-weight:600;margin-bottom:28px;max-width:900px}
+.hero-about{font-size:18px;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:40px}
+.cta-stack{display:flex;flex-direction:column;gap:12px}
+.btn-solid{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;background:var(--accent);color:#fff;font-family:var(--font-body);font-weight:600;font-size:15px;border-radius:8px;transition:all .3s}
+.btn-solid:hover{transform:translateX(4px);box-shadow:-4px 4px 0 var(--text)}
+.btn-solid .code{font-family:var(--font-mono);font-size:12px;opacity:0.75;font-weight:500}
+.btn-outline-tech{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 23px;border:1px solid var(--border);color:var(--text);font-weight:500;font-size:15px;border-radius:8px;transition:all .3s;background:rgba(255,255,255,0.5);backdrop-filter:blur(10px)}
+.btn-outline-tech:hover{border-color:var(--accent);color:var(--accent)}
+.btn-outline-tech .code{font-family:var(--font-mono);font-size:12px;opacity:0.6}
+@media(max-width:968px){.hero-grid{grid-template-columns:1fr;gap:48px}}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);background:rgba(255,255,255,0.5);backdrop-filter:blur(10px);border-radius:12px;margin:64px auto 0;max-width:1400px}
+.stat{padding:28px 32px;border-right:1px solid var(--border);position:relative;z-index:2}
+.stat:last-child{border-right:none}
+.stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:500}
+.stat-value{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-0.03em}
+.stat-value .unit{font-size:18px;color:var(--accent);margin-left:2px}
+@media(max-width:968px){.stats-row{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--border)}}
+@media(max-width:520px){.stats-row{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid var(--border)}.stat:last-child{border-bottom:none}}
+section.block{padding:120px 32px;position:relative;z-index:2}
+.block-inner{max-width:1400px;margin:0 auto}
+@media(max-width:768px){section.block{padding:80px 20px}}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:48px;margin-bottom:72px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid var(--border)}
+.section-code{font-family:var(--font-mono);font-size:12px;color:var(--accent);font-weight:500;letter-spacing:0.1em}
+.section-title{font-size:clamp(36px,5vw,60px);font-weight:600;max-width:720px;letter-spacing:-0.025em}
+.services-tech{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px)}
+.svc-item{padding:40px 36px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:all .3s;position:relative;cursor:pointer}
+.svc-item:nth-child(2n){border-right:none}
+.svc-item:nth-last-child(-n+2){border-bottom:none}
+.svc-item:hover{background:var(--accent-soft)}
+.svc-item::after{content:'→';position:absolute;top:40px;right:36px;font-family:var(--font-mono);font-size:20px;color:var(--muted);transition:all .3s}
+.svc-item:hover::after{color:var(--accent);transform:translateX(6px)}
+.svc-code{font-family:var(--font-mono);font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.1em;font-weight:600}
+.svc-item h3{font-size:22px;margin-bottom:10px;font-weight:600}
+.svc-item p{color:var(--muted);font-size:14px;line-height:1.6;max-width:420px}
+@media(max-width:768px){.services-tech{grid-template-columns:1fr}.svc-item{border-right:none!important}.svc-item:nth-last-child(2){border-bottom:1px solid var(--border)!important}.svc-item:nth-last-child(1){border-bottom:none!important}}
+.diff-block{padding:100px 0;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:80px 0;border-radius:12px}
+.diff-inner{max-width:1400px;margin:0 auto;padding:0 32px}
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px}
+.diff-box{padding:36px 32px;background:var(--bg);border:1px solid var(--border);border-radius:12px;transition:all .3s;position:relative;overflow:hidden}
+.diff-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.diff-box:hover::before{transform:scaleX(1)}
+.diff-box:hover{transform:translateY(-4px);border-color:var(--accent)}
+.diff-index{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:24px;font-weight:600;letter-spacing:0.1em}
+.diff-box h3{font-size:22px;margin-bottom:12px;font-weight:600}
+.diff-box p{color:var(--muted);font-size:14px;line-height:1.65}
+@media(max-width:968px){.diff-grid{grid-template-columns:1fr;gap:20px}.diff-inner{padding:0 20px}}
+.contact-block{text-align:center}
+.contact-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:500}
+.contact-h{font-size:clamp(40px,5vw,64px);margin-bottom:48px;font-weight:600;letter-spacing:-0.025em}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:720px;margin:0 auto 48px}
+.contact-card{padding:28px;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;text-align:left;transition:all .3s}
+.contact-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.contact-card .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:500}
+.contact-card .val{font-family:var(--font-display);font-size:19px;font-weight:600}
+@media(max-width:640px){.contact-grid{grid-template-columns:1fr}}
+footer.main{padding:64px 32px 40px;border-top:1px solid var(--border);position:relative;z-index:2;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px)}
+footer.main .inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;max-width:1400px;margin:0 auto}
+footer.main .brand{font-family:var(--font-display);font-size:26px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+footer.main .brand::before{content:'';width:10px;height:10px;background:var(--accent);border-radius:2px}
+footer.main .tag{color:var(--muted);font-size:14px;max-width:320px;line-height:1.6}
+footer.main .col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+footer.main .col p{font-size:14px;line-height:1.7}
+@media(max-width:768px){footer.main{padding:48px 20px 32px}footer.main .inner{grid-template-columns:1fr;gap:32px}}
+</style></head><body>
+<nav><div class="inner"><span class="logo">TODO PROYECTABLE VIDAL CONSTRUCCIONES</span><a href="https://wa.me/549111564279893" target="_blank" rel="noopener" class="cta">Consultar →</a></div></nav>
+<section class="hero"><div class="hero-inner">
+<div class="hero-tag reveal">Empresa</div>
+<div class="hero-grid">
+<div>
+<h1 class="reveal d1">Construyendo con precisión</h1>
+<p class="hero-about reveal d2">En TODO PROYECTABLE VIDAL CONSTRUCCIONES, nos especializamos en ofrecer soluciones integrales para proyectos de construcción en la Ciudad Autónoma de Buenos Aires. Nuestro equipo de profesionales cuenta con amplia experiencia en el rubro, lo que nos permite garantizar resultados de alta calidad y cumplimiento de plazos.</p>
+</div>
+<div class="cta-stack reveal d3">
+<a href="https://wa.me/549111564279893" target="_blank" rel="noopener" class="btn-solid"><span>Consultar</span><span class="code">[01]</span></a>
+<a href="tel:0111564279893" class="btn-outline-tech"><span>Llamar ahora</span><span class="code">[02]</span></a>
+</div>
+</div>
+<div class="stats-row reveal d4">
+<div class="stat"><div class="stat-label">Rating</div><div class="stat-value">5.0<span class="unit">/5</span></div></div>
+<div class="stat"><div class="stat-label">Reseñas</div><div class="stat-value">—</div></div>
+<div class="stat"><div class="stat-label">Servicios</div><div class="stat-value">06</div></div>
+<div class="stat"><div class="stat-label">Respuesta</div><div class="stat-value"><span style="font-size:24px">&lt;</span>24<span class="unit">h</span></div></div>
+</div>
+</div></section>
+<section class="block scroll-reveal"><div class="block-inner">
+<div class="section-head">
+<div><div class="section-code">// 01_ABOUT</div><h2 class="section-title" style="margin-top:12px">Construyendo con precisión</h2></div>
+<p style="max-width:420px;color:var(--muted);font-size:16px;line-height:1.7">En TODO PROYECTABLE VIDAL CONSTRUCCIONES, nos especializamos en ofrecer soluciones integrales para proyectos de construcción en la Ciudad Autónoma de Buenos Aires. Nuestro equipo de profesionales cuenta con amplia experiencia en el rubro, lo que nos permite garantizar resultados de alta calidad y cumplimiento de plazos.</p>
+</div>
+<div class="section-code" style="margin-bottom:12px">// 02_SERVICES — [06]</div>
+<h2 class="section-title" style="margin-bottom:48px">Áreas de trabajo</h2>
+<div class="services-tech">
+<div class="svc-item scroll-reveal" style="transition-delay:0ms">
+<div class="svc-code">SRV_01</div>
+<h3>Gerenciamiento de Obra</h3><p>Asesoramiento y supervisión integral de proyectos de construcción, desde la planificación hasta la entrega final</p>
+</div><div class="svc-item scroll-reveal" style="transition-delay:50ms">
+<div class="svc-code">SRV_02</div>
+<h3>Diseño y Planificación</h3><p>Desarrollo de proyectos personalizados, considerando las necesidades y objetivos de cada cliente</p>
+</div><div class="svc-item scroll-reveal" style="transition-delay:100ms">
+<div class="svc-code">SRV_03</div>
+<h3>Ejecución de Obras Civiles</h3><p>Construcción de edificios, viviendas, centros comerciales y otros proyectos de infraestructura</p>
+</div><div class="svc-item scroll-reveal" style="transition-delay:150ms">
+<div class="svc-code">SRV_04</div>
+<h3>Reformas y Ampliaciones</h3><p>Transformación y expansión de espacios existentes, manteniendo el estilo y la funcionalidad original</p>
+</div><div class="svc-item scroll-reveal" style="transition-delay:200ms">
+<div class="svc-code">SRV_05</div>
+<h3>Mantenimiento y Reparación</h3><p>Servicios de conservación y reparación de edificios y estructuras, para garantizar su durabilidad y seguridad</p>
+</div><div class="svc-item scroll-reveal" style="transition-delay:250ms">
+<div class="svc-code">SRV_06</div>
+<h3>Dirección de Obra</h3><p>Coordinación y supervisión de todos los aspectos de la construcción, desde la planificación hasta la entrega final</p>
+</div>
+</div></div></section>
+<section class="block scroll-reveal"><div class="diff-block"><div class="diff-inner">
+<div class="section-code">// 03_APPROACH</div>
+<h2 class="section-title" style="margin-top:12px">Nuestros principios</h2>
+<div class="diff-grid">
+<div class="diff-box scroll-reveal" style="transition-delay:0ms">
+<div class="diff-index">[01/03]</div>
+<h3>Experiencia Local</h3><p>Nuestro conocimiento profundo del mercado y las regulaciones de la Ciudad Autónoma de Buenos Aires nos permite ofrecer soluciones personalizadas y eficientes</p>
+</div><div class="diff-box scroll-reveal" style="transition-delay:100ms">
+<div class="diff-index">[02/03]</div>
+<h3>Enfoque Integral</h3><p>Consideramos todos los aspectos de un proyecto, desde la planificación hasta la entrega final, para garantizar resultados de alta calidad y cumplimiento de plazos</p>
+</div><div class="diff-box scroll-reveal" style="transition-delay:200ms">
+<div class="diff-index">[03/03]</div>
+<h3>Equipo Especializado</h3><p>Nuestro equipo de profesionales cuenta con amplia experiencia y capacitación en el rubro, lo que nos permite ofrecer soluciones innovadoras y efectivas</p>
+</div>
+</div></div></div></section>
+<section class="block contact-block scroll-reveal"><div class="block-inner">
+<div class="contact-label">// 04_CONTACT</div>
+<h2 class="contact-h">Hablemos.</h2>
+
+<a href="https://wa.me/549111564279893" target="_blank" rel="noopener" class="btn-solid" style="display:inline-flex;width:auto;padding:18px 36px"><span>Escribinos por WhatsApp</span><span class="code">[→]</span></a>
+</div></section>
+<footer class="main"><div class="inner">
+<div><div class="brand">TODO PROYECTABLE VIDAL CONSTRUCCIONES</div><p class="tag">En TODO PROYECTABLE VIDAL CONSTRUCCIONES, nos especializamos en ofrecer soluciones integrales para proyectos de construcción en la Ciudad Autónoma de Buenos Aires. Nuestro equipo de profesionales cuenta con amplia experiencia en el rubro, lo que nos permite garantizar resultados de alta calidad y cumplimiento de plazos.</p></div>
+<div class="col"><h4>// CONTACT</h4></div>
+<div class="col"><h4>// RUBRO</h4><p>Contratista general</p></div>
+</div></footer>
+<div class="eterlab-credit">
+  <div class="eterlab-credit-inner">
+    <p>©2026 | diseñado y desarrollado por <a href="https://eterlab.co/" target="_blank" rel="noreferrer">eterlab.</a></p>
+  </div>
+</div>
+<style>
+.eterlab-credit{background:#212121}
+.eterlab-credit-inner{max-width:1536px;margin:0 auto;padding:8px 16px}
+.eterlab-credit p{text-align:center;font-size:12px;color:rgba(255,255,255,0.8);font-family:'Montserrat',sans-serif;font-weight:400;margin:0;letter-spacing:0.01em}
+.eterlab-credit a{font-style:italic;color:rgba(255,255,255,0.9);transition:color .2s;text-decoration:none;font-weight:500}
+.eterlab-credit a:hover{color:#fff}
+</style><a href="https://wa.me/549111564279893" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:99;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(37,211,102,0.35);transition:all .3s cubic-bezier(.2,.8,.2,1)}
+.wa-float:hover{transform:scale(1.08) rotate(-5deg);box-shadow:0 20px 40px rgba(37,211,102,0.45)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+</style><script>
+(function(){
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.scroll-reveal').forEach(el => io.observe(el));
+})();
+</script>
+</body></html>
